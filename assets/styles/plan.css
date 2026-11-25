@@ -1,0 +1,125 @@
+.leyenda-plan {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 20px;
+  margin: 0 0 22px;
+  color: var(--tinta-suave);
+  font-size: 12px;
+}
+
+.leyenda-plan span {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.punto {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+}
+
+.punto.fortaleza { background: #178765; }
+.punto.oportunidad { background: #6658e8; }
+.punto.debilidad { background: #c18319; }
+.punto.amenaza { background: #d76368; }
+
+.plan-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.accion {
+  padding: 23px;
+  border-top: 5px solid var(--tono);
+}
+
+.accion.fortaleza { --tono: #178765; }
+.accion.oportunidad { --tono: #6658e8; }
+.accion.debilidad { --tono: #c18319; }
+.accion.amenaza { --tono: #d76368; }
+
+.accion-cabecera {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.accion-numero {
+  color: var(--tinta-suave);
+  font-size: 11px;
+  font-weight: 850;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.accion-origen {
+  padding: 5px 9px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--tono) 10%, white);
+  color: var(--tono);
+  font-size: 10px;
+  font-weight: 850;
+}
+
+.accion h2 {
+  margin: 0 0 10px;
+  font-size: 21px;
+}
+
+.accion-que {
+  margin: 0 0 18px;
+  color: var(--tinta-suave);
+  font-size: 14px;
+}
+
+.accion dl {
+  display: grid;
+  grid-template-columns: 75px 1fr;
+  gap: 8px 12px;
+  margin: 0;
+  padding-top: 14px;
+  border-top: 1px solid var(--linea);
+  font-size: 13px;
+}
+
+.accion dt {
+  color: var(--tono);
+  font-size: 10px;
+  font-weight: 850;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.accion dd {
+  margin: 0;
+  color: #4c5870;
+}
+
+.cierre-plan {
+  margin-top: 22px;
+  padding: 22px 24px;
+  border-radius: 18px;
+  background: var(--violeta-claro);
+}
+
+.cierre-plan p {
+  max-width: 780px;
+  margin: 8px 0 0;
+  color: var(--tinta-suave);
+}
+
+@media (max-width: 720px) {
+  .plan-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 500px) {
+  .accion {
+    padding: 19px;
+  }
+}

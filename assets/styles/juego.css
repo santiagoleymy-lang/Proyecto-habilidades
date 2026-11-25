@@ -1,0 +1,522 @@
+.presentacion-juego {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 22px;
+  padding: 24px 28px;
+  border: 1px solid var(--linea);
+  border-radius: 22px;
+  background: linear-gradient(120deg, #fff, #eeecff);
+}
+
+.presentacion-juego h2 {
+  margin: 5px 0 8px;
+  font-size: clamp(22px, 4vw, 32px);
+}
+
+.presentacion-juego p {
+  max-width: 680px;
+  margin-bottom: 0;
+  color: var(--tinta-suave);
+}
+
+.mini-etiqueta {
+  color: var(--violeta) !important;
+  font-size: 11px;
+  font-weight: 850;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.insignia-juego {
+  display: grid;
+  width: 64px;
+  height: 64px;
+  flex: none;
+  place-items: center;
+  border-radius: 20px;
+  background: var(--violeta);
+  color: white;
+  font-size: 22px;
+}
+
+.juego-app {
+  min-height: 250px;
+  padding: clamp(18px, 4vw, 34px);
+  overflow: hidden;
+  border-radius: 28px;
+  background: #17223a;
+  box-shadow: 0 24px 55px rgba(23, 34, 58, 0.2);
+  color: white;
+}
+
+.cargando {
+  margin: 0;
+  color: #d9deec;
+}
+
+/* El juego insertará aquí las escenas y los personajes. */
+.mision-cabecera {
+  display: flex;
+  justify-content: space-between;
+  gap: 14px;
+  align-items: center;
+}
+
+.mision-progreso {
+  display: flex;
+  gap: 6px;
+  margin: 18px 0;
+}
+
+.mision-progreso span {
+  height: 6px;
+  flex: 1;
+  border-radius: 9px;
+  background: #36435c;
+}
+
+.mision-progreso span.completada {
+  background: #44caa1;
+}
+
+.mision-progreso span.actual {
+  background: #9b91ff;
+}
+
+.escena {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 20px;
+  align-items: center;
+  min-height: 230px;
+  margin: 20px 0;
+  padding: 22px;
+  overflow: hidden;
+  border-radius: 22px;
+  background: linear-gradient(130deg, #e9e7ff, #d8f6ed);
+  color: #18233b;
+}
+
+.escena-texto {
+  max-width: 480px;
+}
+
+.escena-texto h2 {
+  margin: 7px 0;
+  font-size: clamp(25px, 4vw, 38px);
+}
+
+.personajes {
+  display: flex;
+  align-items: flex-end;
+  gap: 10px;
+}
+
+.personaje {
+  width: 78px;
+  height: 120px;
+  border-radius: 35px 35px 12px 12px;
+  background: var(--ropa, #8076ff);
+}
+
+.opciones {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.opcion {
+  padding: 14px;
+  border: 1px solid #46516b;
+  border-radius: 15px;
+  background: #ffffff0d;
+  color: white;
+  text-align: left;
+  cursor: pointer;
+}
+
+.opcion:hover {
+  border-color: #a59eff;
+  background: #8479ff24;
+}
+
+.retroalimentacion {
+  margin-top: 15px;
+  padding: 15px;
+  border: 1px solid #4a5772;
+  border-radius: 15px;
+  background: #0e1628;
+  color: #dbe1f1;
+}
+
+.boton-juego {
+  margin-top: 18px;
+  padding: 12px 17px;
+  border: 0;
+  border-radius: 13px;
+  background: #9b91ff;
+  color: #171d36;
+  font-weight: 750;
+  cursor: pointer;
+}
+
+@media (max-width: 700px) {
+  .presentacion-juego {
+    align-items: flex-start;
+  }
+
+  .insignia-juego {
+    display: none;
+  }
+
+  .escena {
+    grid-template-columns: 1fr;
+  }
+
+  .personajes {
+    justify-content: center;
+  }
+
+  .opciones {
+    grid-template-columns: 1fr;
+  }
+}
+
+.inicio-juego {
+  max-width: 700px;
+  padding: 18px;
+}
+
+.inicio-juego h2,
+.resultado-juego h2 {
+  margin: 6px 0 10px;
+  color: white;
+  font-size: clamp(28px, 5vw, 42px);
+}
+
+.inicio-juego p,
+.resultado-juego > p {
+  color: #c7cfe0;
+}
+
+.modo-presion {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin: 20px 0;
+  color: #e0e4f0;
+  font-size: 14px;
+}
+
+.modo-presion input {
+  accent-color: #9b91ff;
+}
+
+.etiqueta-mision {
+  color: #aaa3ff;
+  font-size: 11px;
+  font-weight: 850;
+  letter-spacing: 0.12em;
+}
+
+.estadisticas-juego {
+  display: flex;
+  gap: 8px;
+}
+
+.estadisticas-juego span {
+  padding: 7px 10px;
+  border: 1px solid #ffffff2a;
+  border-radius: 10px;
+  color: #d9deec;
+  font-size: 11px;
+}
+
+.estadisticas-juego b {
+  color: white;
+}
+
+.habilidades-juego {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 9px;
+}
+
+.medidor-habilidad {
+  padding: 10px;
+  border: 1px solid #ffffff17;
+  border-radius: 12px;
+  background: #ffffff0d;
+}
+
+.medidor-habilidad label {
+  display: flex;
+  justify-content: space-between;
+  gap: 6px;
+  margin-bottom: 6px;
+  color: #c6cde0;
+  font-size: 10px;
+}
+
+.medidor-habilidad label b {
+  color: white;
+}
+
+.medidor-habilidad > div,
+.resultado-fila > div {
+  height: 5px;
+  overflow: hidden;
+  border-radius: 99px;
+  background: #35415a;
+}
+
+.medidor-habilidad i,
+.resultado-fila i {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #877bff, #46d3ad);
+}
+
+.escena-texto .mini-etiqueta {
+  color: #6658e8;
+}
+
+.tarjeta-personaje {
+  width: 86px;
+  text-align: center;
+  animation: flotar 2.8s ease-in-out infinite;
+}
+
+.tarjeta-personaje:nth-child(2) { animation-delay: 0.3s; }
+.tarjeta-personaje:nth-child(3) { animation-delay: 0.6s; }
+
+.tarjeta-personaje > b,
+.tarjeta-personaje > small {
+  display: block;
+  color: #273451;
+}
+
+.tarjeta-personaje > b { font-size: 11px; }
+.tarjeta-personaje > small { font-size: 9px; }
+
+.avatar-persona {
+  position: relative;
+  width: 74px;
+  height: 120px;
+  margin: 0 auto;
+}
+
+.avatar-persona .cara {
+  position: absolute;
+  top: 13px;
+  left: 23px;
+  width: 31px;
+  height: 37px;
+  border: 2px solid #263451;
+  border-radius: 45%;
+  background: var(--piel);
+}
+
+.avatar-persona .pelo {
+  position: absolute;
+  z-index: 2;
+  top: 6px;
+  left: 20px;
+  width: 37px;
+  height: 22px;
+  border-radius: 22px 22px 7px 7px;
+  background: var(--cabello);
+}
+
+.avatar-persona .ojos {
+  position: absolute;
+  z-index: 3;
+  top: 28px;
+  left: 31px;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: #263451;
+  box-shadow: 13px 0 #263451;
+}
+
+.avatar-persona .sonrisa {
+  position: absolute;
+  z-index: 3;
+  top: 39px;
+  left: 34px;
+  width: 11px;
+  height: 5px;
+  border-bottom: 2px solid #263451;
+  border-radius: 50%;
+}
+
+.avatar-persona .cuerpo {
+  position: absolute;
+  top: 49px;
+  left: 11px;
+  width: 53px;
+  height: 48px;
+  border: 3px solid #263451;
+  border-radius: 19px 19px 8px 8px;
+  background: var(--camisa);
+}
+
+.avatar-persona .brazo {
+  position: absolute;
+  top: 55px;
+  width: 12px;
+  height: 34px;
+  border: 3px solid #263451;
+  border-radius: 9px;
+  background: var(--piel);
+}
+
+.avatar-persona .brazo.izquierdo {
+  left: 4px;
+  transform: rotate(15deg);
+}
+
+.avatar-persona .brazo.derecho {
+  right: 3px;
+  transform: rotate(-15deg);
+}
+
+.avatar-persona .piernas {
+  position: absolute;
+  top: 94px;
+  left: 24px;
+  width: 11px;
+  height: 23px;
+  border-radius: 8px;
+  background: #263451;
+  box-shadow: 16px 0 #263451;
+}
+
+.dialogo {
+  grid-column: 1 / -1;
+  padding: 12px 15px;
+  border-radius: 13px;
+  background: white;
+  color: #37435d;
+  font-size: 13px;
+}
+
+.dialogo b {
+  color: var(--violeta);
+}
+
+.opciones-juego {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.opcion-juego {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 14px;
+  border: 1px solid #46516b;
+  border-radius: 14px;
+  background: #ffffff0d;
+  color: white;
+  text-align: left;
+  cursor: pointer;
+}
+
+.opcion-juego:hover:not(:disabled) {
+  border-color: #a59eff;
+  background: #8479ff24;
+}
+
+.opcion-juego > span {
+  display: grid;
+  width: 25px;
+  height: 25px;
+  flex: none;
+  place-items: center;
+  border-radius: 8px;
+  background: #ffffff1b;
+  color: #c9c3ff;
+  font-weight: 850;
+}
+
+.opcion-juego:disabled { cursor: default; }
+.opcion-juego.respuesta-mejor { border-color: #44caa1; }
+.opcion-juego.respuesta-mejorable { border-color: #e97179; }
+.opcion-juego.respuesta-aceptable { border-color: #efbd68; }
+
+.retro-juego {
+  margin-top: 15px;
+  padding: 15px;
+  border: 1px solid #4a5772;
+  border-radius: 15px;
+  background: #0e1628;
+  color: #dbe1f1;
+}
+
+.retro-juego > b { color: #62d8b2; }
+.retro-juego p { margin: 6px 0 0; }
+
+.boton-secundario-juego {
+  margin: 18px 0 0 8px;
+  padding: 12px 16px;
+  border: 1px solid #53617f;
+  border-radius: 13px;
+  background: transparent;
+  color: #f0f2fa;
+  cursor: pointer;
+}
+
+.reloj {
+  height: 6px;
+  overflow: hidden;
+  border-radius: 99px;
+  background: #35415a;
+}
+
+.reloj div {
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #ffcf70, #f17379);
+}
+
+.tiempo-restante {
+  color: #ffcf70;
+  font-size: 12px;
+}
+
+.resultado-juego h3 { color: #fff; }
+
+.resultado-fila {
+  display: grid;
+  grid-template-columns: 155px 1fr 28px;
+  align-items: center;
+  gap: 10px;
+  color: #dce2ef;
+  font-size: 12px;
+}
+
+.recomendacion-juego {
+  margin: 20px 0;
+  padding: 15px;
+  border-left: 4px solid #efbd68;
+  border-radius: 0 13px 13px 0;
+  background: #f0b64f1b;
+  color: #f2e7d1;
+}
+
+.recomendacion-juego p { margin: 5px 0 0; }
+
+@keyframes flotar {
+  50% { transform: translateY(-5px); }
+}
+
+@media (max-width: 700px) {
+  .habilidades-juego { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .opciones-juego { grid-template-columns: 1fr; }
+}

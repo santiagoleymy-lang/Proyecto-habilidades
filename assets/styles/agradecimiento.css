@@ -1,0 +1,61 @@
+.agradecimiento {
+  position: relative;
+  max-width: 850px;
+  margin: 35px auto;
+  padding: clamp(32px, 7vw, 74px);
+  overflow: hidden;
+  border: 1px solid var(--linea);
+  border-radius: 30px;
+  background:
+    radial-gradient(circle at 90% 10%, #dedaff 0, transparent 30%),
+    linear-gradient(140deg, #fff, #f0efff);
+  box-shadow: var(--sombra);
+  text-align: center;
+}
+
+.destello {
+  color: var(--coral);
+  font-size: 42px;
+}
+
+.agradecimiento > .etiqueta {
+  justify-content: center;
+  margin: 12px 0;
+}
+
+.agradecimiento h2 {
+  margin: 0;
+  color: var(--violeta);
+  font-size: clamp(28px, 5vw, 48px);
+}
+
+.separador {
+  width: 56px;
+  height: 3px;
+  margin: 25px auto;
+  border-radius: 99px;
+  background: var(--coral);
+}
+
+.agradecimiento > p:not(.etiqueta) {
+  max-width: 640px;
+  margin: 14px auto;
+  color: var(--tinta-suave);
+}
+
+.agradecimiento .cierre-agradecimiento {
+  color: var(--tinta);
+  font-weight: 700;
+}
+
+.firma-agradecimiento {
+  margin-top: 30px !important;
+  color: var(--violeta) !important;
+  font-weight: 850;
+}
+
+@media (max-width: 520px) {
+  .agradecimiento {
+    padding: 32px 22px;
+  }
+}

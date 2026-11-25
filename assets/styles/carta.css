@@ -1,0 +1,59 @@
+.carta {
+  position: relative;
+  max-width: 790px;
+  margin: 0 auto;
+  padding: clamp(25px, 6vw, 62px);
+  border: 1px solid var(--linea);
+  border-radius: 8px 26px 26px 8px;
+  background: var(--blanco);
+  box-shadow: var(--sombra);
+}
+
+.carta::before {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 7px;
+  border-radius: 8px 0 0 8px;
+  background: linear-gradient(var(--violeta), var(--coral));
+  content: "";
+}
+
+.datos-carta {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px 20px;
+  margin-bottom: 28px;
+  padding-bottom: 17px;
+  border-bottom: 1px dashed var(--linea);
+  color: var(--tinta-suave);
+  font-size: 12px;
+}
+
+.carta p {
+  margin: 0 0 17px;
+  color: #414d67;
+  font-size: 16px;
+  line-height: 1.85;
+}
+
+.carta .saludo {
+  color: var(--tinta);
+  font-weight: 750;
+}
+
+.carta .firma {
+  margin-top: 27px;
+  color: var(--violeta);
+  font-size: 23px;
+  font-weight: 800;
+  line-height: 1.5;
+}
+
+@media (max-width: 520px) {
+  .carta {
+    padding: 25px 20px 25px 26px;
+  }
+}
