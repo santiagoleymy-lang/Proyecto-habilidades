@@ -520,3 +520,57 @@
   .habilidades-juego { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .opciones-juego { grid-template-columns: 1fr; }
 }
+
+.boton-voz-situacion {
+  margin-top: 14px;
+  padding: 10px 16px;
+  border: 1px solid rgba(23, 34, 58, 0.18);
+  border-radius: 999px;
+  background: white;
+  color: #17223a;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.boton-voz-situacion:hover {
+  transform: translateY(-1px);
+}
+
+.insignia-juego {
+  width: auto;
+  min-width: 174px;
+  height: 58px;
+  padding: 0 16px;
+  border: 0;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 700;
+  transition: background 0.2s, box-shadow 0.2s, transform 0.2s;
+}
+
+.insignia-juego[data-estado="hablando"] {
+  background: #4338ca;
+  box-shadow: 0 0 0 4px rgba(99, 91, 255, 0.25);
+}
+
+.insignia-juego[data-estado="pausado"] {
+  background: #8e85f6;
+  box-shadow: 0 0 0 4px rgba(99, 91, 255, 0.18);
+}
+
+.insignia-juego:focus-visible {
+  outline: 3px solid #17223a;
+  outline-offset: 4px;
+}
+
+.insignia-juego:hover {
+  filter: brightness(1.18);
+  transform: translateY(-2px) scale(1.04);
+  box-shadow: 0 0 0 5px rgba(99, 91, 255, 0.25),
+              0 0 22px rgba(99, 91, 255, 0.45);
+}
+
+.insignia-juego:active {
+  transform: scale(0.97);
+}

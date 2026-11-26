@@ -130,7 +130,43 @@ const misiones = [
       { tipo: "mejorable", texto: "Acepto todas las reuniones para no perderme ninguna decisión.", efecto: { tiempo: -7, estres: -3 }, respuesta: "Asistir a todo reduce el tiempo disponible para completar trabajo importante." },
       { tipo: "mejorable", texto: "Dejo que cada día se organice según lo que aparezca.", efecto: { tiempo: -8 }, respuesta: "Sin una revisión diaria, lo urgente puede desplazar lo que ya habías planeado." }
     ]
+  },
+
+    {
+    titulo: "Un integrante pide más autonomía",
+    contexto: "Lucía terminó sus tareas antes de tiempo y pregunta si puede tomar decisiones sobre una nueva función.",
+    voz: "Lucía",
+    dialogo: "Ya terminé mi parte. Me gustaría encargarme de la nueva función y proponer cómo resolverla.",
+    personas: ["Santiago", "Lucía", "Marco"],
+    habilidad: "delegar",
+    opciones: [
+      {
+        tipo: "mejor",
+        texto: "Le explico el objetivo y los límites, le doy autonomía para proponer una solución y acordamos revisar un avance clave.",
+        efecto: { delegar: 10, relaciones: 3 },
+        respuesta: "Dar autonomía con objetivos y límites claros fortalece la confianza y el empoderamiento."
+      },
+      {
+        tipo: "aceptable",
+        texto: "Le asigno la función y acordamos revisar juntos cada avance.",
+        efecto: { delegar: 3, estres: -2 },
+        respuesta: "Acordar revisiones ayuda, aunque puede darle más espacio para decidir cómo hacer el trabajo."
+      },
+      {
+        tipo: "mejorable",
+        texto: "Le indico exactamente qué hacer y le pido que no cambie nada.",
+        efecto: { delegar: -7, relaciones: -3 },
+        respuesta: "Las instrucciones detalladas pueden limitar su iniciativa y aprendizaje."
+      },
+      {
+        tipo: "mejorable",
+        texto: "Acepto que haga cualquier cambio sin acordar límites ni revisar el impacto.",
+        efecto: { delegar: -5, decisiones: -4 },
+        respuesta: "La autonomía funciona mejor con objetivos y límites acordados."
+      }
+    ]
   }
+
 ];
 
 const acciones = {
@@ -144,6 +180,73 @@ const acciones = {
 
 let juego;
 let reloj = null;
+
+function actualizarBotonVoz(estado) {
+  const boton = document.getElementById("btn-voz-mision");
+  if (!boton) return;
+
+  boton.dataset.estado = estado;
+
+  if (estado === "hablando") {
+    boton.textContent = "⏸ Pausar lectura";
+    boton.setAttribute("aria-label", "Pausar lectura");
+    boton.setAttribute("aria-pressed", "true");
+  } else if (estado === "pausado") {
+    boton.textContent = "▶ Continuar lectura";
+    boton.setAttribute("aria-label", "Continuar lectura");
+    boton.setAttribute("aria-pressed", "true");
+  } else {
+    boton.textContent = "▶ Escuchar misión";
+    boton.setAttribute("aria-label", "Escuchar la misión");
+    boton.setAttribute("aria-pressed", "false");
+  }
+}
+
+function hablar(texto) {
+  if (!("speechSynthesis" in window)) {
+    alert("Este navegador no permite reproducir voz.");
+    return;
+  }
+
+  window.speechSynthesis.cancel();
+
+  const voz = new SpeechSynthesisUtterance(texto);
+  voz.lang = "es-MX";
+  voz.rate = 0.95;
+  voz.pitch = 1;
+
+  voz.onstart = () => actualizarBotonVoz("hablando");
+  voz.onend = () => actualizarBotonVoz("listo");
+  voz.onerror = () => actualizarBotonVoz("listo");
+
+  window.speechSynthesis.speak(voz);
+}
+
+function escucharMision() {
+  const sintesis = window.speechSynthesis;
+
+  if (sintesis.speaking && !sintesis.paused) {
+    sintesis.pause();
+    actualizarBotonVoz("pausado");
+    return;
+  }
+
+  if (sintesis.paused) {
+    sintesis.resume();
+    actualizarBotonVoz("hablando");
+    return;
+  }
+
+  if (!juego.iniciado) {
+    hablar(
+      `Tu misión. Dirige a tu equipo de software. Resuelve ${misiones.length} situaciones de liderazgo. Tus elecciones cambian tus puntos y los medidores de habilidades. Después de cada respuesta verás una explicación.`
+    );
+    return;
+  }
+
+  const m = misiones[juego.mision];
+  hablar(`Misión ${juego.mision + 1}. ${m.titulo}. ${m.contexto} ${m.voz} dice: ${m.dialogo}`);
+}
 
 function mezclar(lista) {
   return [...lista].sort(() => Math.random() - 0.5);
@@ -237,6 +340,9 @@ function pantallaMision() {
         <p class="mini-etiqueta">Situación del equipo</p>
         <h2>${m.titulo}</h2>
         <p>${m.contexto}</p>
+        <button class="boton-voz-situacion" type="button" data-voz-situacion>
+        🔊 Escuchar situación
+        </button>
       </div>
       <div class="personajes">${m.personas.map(personaje).join("")}</div>
       <div class="dialogo"><b>${m.voz} dice:</b> “${m.dialogo}”</div>
@@ -369,7 +475,13 @@ function dibujar() {
 
 app.addEventListener("click", (evento) => {
   const boton = evento.target.closest("button");
-  if (!boton) return;
+   if (!boton) return;
+
+    if (boton.dataset.vozSituacion !== undefined) {
+    const m = misiones[juego.mision];
+    hablar(`Situación: ${m.contexto} ${m.voz} dice: ${m.dialogo}`);
+    return;
+   }
 
   if (boton.dataset.accion === "empezar") {
     juego.presion = document.getElementById("modo-presion").checked;
@@ -403,3 +515,5 @@ app.addEventListener("click", (evento) => {
 
 nuevoJuego();
 dibujar();
+
+document.getElementById("btn-voz-mision").addEventListener("click", escucharMision);
